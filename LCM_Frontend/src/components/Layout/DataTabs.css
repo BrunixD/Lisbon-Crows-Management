@@ -1,0 +1,28 @@
+/* components/Layout/DataTabs.css */
+
+.mode-tabs {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .mode-tab {
+    background-color: var(--medium-gray);
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-right: 5px;
+    font-size: 1rem;
+    transition: background-color var(--transition-duration) ease;
+  }
+  
+  .mode-tab:hover {
+    background-color: #ddd;
+  }
+  
+  .mode-tab.active {
+    background-color: white;
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: bold;
+  }

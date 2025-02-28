@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Tab from '../Tabs/Tab';
-import Table from '../Tables/Table';
+import Tab from './Tabs/Tab';
+import Table from './Tables/Table';
 import useData from '../hooks/useData';
-import ViewModePaymentTabs from './ViewModePaymentTabs.jsx';
+import ViewModePaymentTabs from './Tabs/ViewModePaymentTabs.jsx';
 
 const ViewMode = () => {
   const [activeTab, setActiveTab] = useState('Atletas');

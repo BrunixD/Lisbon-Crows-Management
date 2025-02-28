@@ -1,10 +1,10 @@
 // components/Layout/InsertModeTabs.jsx
 import React, { useState } from 'react';
 import Tab from '../Tabs/Tab';
-import AthleteForm from '../Forms/AthleteForm'; //Import the forms
-import MonthlyPaymentForm from '../Forms/MonthlyPaymentForm';
-import MerchandiseForm from '../Forms/MerchandiseForm';
-import ProfitForm from '../Forms/ProfitForm';
+import AthleteForm from '../../Forms/AthleteForm'; //Import the forms
+import MonthlyPaymentForm from '../../Forms/MonthlyPaymentForm';
+import MerchandiseForm from '../../Forms/MerchandiseForm';
+import ProfitForm from '../../Forms/ProfitForm';
 
 const InsertModeTabs = () => {
   const [activeTab, setActiveTab] = useState('Atletas');

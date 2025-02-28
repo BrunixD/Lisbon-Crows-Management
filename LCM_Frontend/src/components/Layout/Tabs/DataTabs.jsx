@@ -1,7 +1,7 @@
 // components/Layout/DataTabs.jsx
 import React, { useState } from 'react';
-import InsertMode from './InsertMode';
-import ViewMode from './ViewMode';
+import InsertMode from '../InsertMode';
+import ViewMode from '../ViewMode';
 
 const DataTabs = () => {
   const [activeMode, setActiveMode] = useState('insert'); // 'insert' or 'view'

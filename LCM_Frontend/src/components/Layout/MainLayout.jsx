@@ -1,6 +1,6 @@
 // components/Layout/MainLayout.jsx
 import React, { useState } from 'react';
-import DataTabs from './DataTabs';
+import DataTabs from './Tabs/DataTabs';
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);

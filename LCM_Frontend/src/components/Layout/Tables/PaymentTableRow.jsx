@@ -1,7 +1,7 @@
 // components/Layout/PaymentTableRow.jsx
 import React from 'react';
-import tickIcon from '../../assets/tick.svg';   // Import the tick icon
-import crossIcon from '../../assets/cross.svg'; // Import the cross icon
+import tickIcon from '../../../assets/tick.svg';   // Import the tick icon
+import crossIcon from '../../../assets/cross.svg'; // Import the cross icon
 
 const PaymentTableRow = ({ athlete, allMonths }) => {
   return (

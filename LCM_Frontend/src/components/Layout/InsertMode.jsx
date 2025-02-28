@@ -1,6 +1,6 @@
 // components/Layout/InsertMode.jsx
 import React from 'react';
-import InsertModeTabs from './InsertModeTabs'; // Import the new component
+import InsertModeTabs from './Tabs/InsertModeTabs'; // Import the new component
 
 const InsertMode = () => {
   return (

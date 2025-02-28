@@ -1,7 +1,7 @@
 // components/Layout/ViewModePaymentTabs.jsx
 import React, { useState } from 'react';
-import Tab from '../Tabs/Tab';
-import PaymentTable from '../Layout/PaymentTable';
+import Tab from './Tab';
+import PaymentTable from '../Tables/PaymentTable';
 
 const ViewModePaymentTabs = () => {
   const [activeTab, setActiveTab] = useState('A');

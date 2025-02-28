@@ -1,6 +1,6 @@
 // components/Layout/PaymentTable.jsx
 import React, { useState, useEffect } from 'react';
-import { supabase } from '../../createClient';
+import { supabase } from '../../../createClient';
 import PaymentTableRow from './PaymentTableRow'; // Import the new component
 
 const PaymentTable = ({ activeTab }) => {

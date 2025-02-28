@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { supabase } from '../../../createClient';
 import PaymentTableRow from './PaymentTableRow'; // Import the new component
+import './../../Styles/TabTable.css';
 
 const PaymentTable = ({ activeTab }) => {
   const [payments, setPayments] = useState([]);

@@ -32,6 +32,15 @@ const useData = (initialTab) => {
           `);
       }
 
+      if (tableName === 'Todos_Pagamentos') {
+        query = supabase
+          .from('Todos_Pagamentos')
+          .select(`
+            *,
+            Atletas (nome)
+          `);
+      }
+
       const { data, error } = await query;
       if (error) {
         throw error;

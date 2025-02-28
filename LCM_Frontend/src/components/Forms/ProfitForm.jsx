@@ -1,5 +1,6 @@
 import React from 'react';
-import './FormStyles.css'; // Import the CSS file
+import './../Styles/Form.css';
+
 
 const ProfitForm = () => {
   return (

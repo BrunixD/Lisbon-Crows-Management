@@ -1,7 +1,7 @@
 // components/Forms/AthleteForm.jsx
 import React from 'react';
 import useAthleteForm from '../hooks/useAthleteForm'; // Adjust path
-import './FormStyles.css'; // Import the CSS file
+import './../Styles/Form.css';
 
 const AthleteForm = () => {
   const {

@@ -1,5 +1,6 @@
 // components/Tables/BoughtMerchandiseTable.jsx
 import React from 'react';
+import './../../Styles/TabTable.css';
 
 const BoughtMerchandiseTable = ({ data }) => {
   if (!data || data.length === 0) {

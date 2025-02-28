@@ -1,9 +1,10 @@
-// components/Layout/ViewModePaymentTabs.jsx
+// components/Layout/ViewModeMonthlySub.jsx
 import React, { useState } from 'react';
 import Tab from './Tab';
 import PaymentTable from '../Tables/PaymentTable';
+import './../../Styles/TabTable.css';
 
-const ViewModePaymentTabs = () => {
+const ViewModeMonthlySub = () => {
   const [activeTab, setActiveTab] = useState('A');
 
   return (
@@ -19,4 +20,4 @@ const ViewModePaymentTabs = () => {
   );
 };
 
-export default ViewModePaymentTabs;
+export default ViewModeMonthlySub;

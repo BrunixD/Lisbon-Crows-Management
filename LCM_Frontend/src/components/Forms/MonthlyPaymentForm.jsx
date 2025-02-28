@@ -1,7 +1,8 @@
 // components/Forms/MonthlyPaymentForm.jsx
 import React from 'react';
 import useMonthlyPaymentForm from '../hooks/useMonthlyPaymentForm';
-import './FormStyles.css'; // Import the CSS file
+import './../Styles/Form.css';
+
 
 const MonthlyPaymentForm = () => {
   const {

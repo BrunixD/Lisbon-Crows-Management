@@ -1,6 +1,10 @@
 // components/Layout/MainLayout.jsx
 import React, { useState } from 'react';
 import DataTabs from './Tabs/DataTabs';
+import './../Styles/Layout.css';
+import './../Styles/StickyHeader.css';
+import './../Styles/Sidebar.css';
+// Import other layout-related CSS if needed
 
 const MainLayout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -14,9 +18,6 @@ const MainLayout = () => {
       <header className="sticky-header">
         <nav>
           {/*  Navigation Tabs */}
-          {/* REMOVE THESE BUTTONS
-          <button onClick={() => console.log("Insert clicked")}>Insert</button>
-          <button onClick={() => console.log("View clicked")}>View</button> */}
 
           {/* Hamburger Menu Icon */}
           <button className="hamburger-menu" onClick={toggleSidebar}>☰</button>

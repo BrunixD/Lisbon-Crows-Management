@@ -1,6 +1,7 @@
 // components/Forms/MonthlyPaymentForm.jsx
 import React from 'react';
 import useMonthlyPaymentForm from '../hooks/useMonthlyPaymentForm';
+import './FormStyles.css'; // Import the CSS file
 
 const MonthlyPaymentForm = () => {
   const {
@@ -20,10 +21,10 @@ const MonthlyPaymentForm = () => {
   } = useMonthlyPaymentForm();
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="form" onSubmit={handleSubmit}> {/* Apply the "form" class */}
       <div>
         <label htmlFor="atleta">Atleta:</label>
-        <select id="atleta" value={selectedAthlete} onChange={(e) => setSelectedAthlete(e.target.value)} required>
+        <select id="atleta" className="input" value={selectedAthlete} onChange={(e) => setSelectedAthlete(e.target.value)} required> {/* Apply "input" class */}
           <option value="">Selecione um Atleta</option>
           {athletes.map((athlete) => (
             <option key={athlete.id} value={athlete.id}>
@@ -36,20 +37,20 @@ const MonthlyPaymentForm = () => {
       {equipa && (
         <div>
           <label>Equipa:</label>
-          <input type="text" value={equipa} readOnly />
+          <input type="text" className="input" value={equipa} readOnly /> {/* Apply "input" class */}
         </div>
       )}
 
       {valorMensalidade && (
         <div>
           <label>Valor Mensalidade:</label>
-          <input type="text" value={valorMensalidade} readOnly />
+          <input type="text" className="input" value={valorMensalidade} readOnly /> {/* Apply "input" class */}
         </div>
       )}
 
       <div>
         <label htmlFor="mes">Mês:</label>
-        <select id="mes" value={mes} onChange={(e) => setMes(e.target.value)} required>
+        <select id="mes" className="input" value={mes} onChange={(e) => setMes(e.target.value)} required> {/* Apply "input" class */}
           <option value="">Selecione um Mês</option>
           {meses.map((mes) => (
             <option key={mes} value={mes}>
@@ -64,12 +65,13 @@ const MonthlyPaymentForm = () => {
         <input
           type="date"
           id="data_pagamento"
+          className="input"
           value={data_pagamento}
           onChange={(e) => setDataPagamento(e.target.value)}
         />
       </div>
 
-      <button type="submit" disabled={loading}>
+      <button type="submit" className="button" disabled={loading}> {/* Apply "button" class */}
         {loading ? 'Creating...' : 'Create Mensalidade'}
       </button>
       {error && <p className="error">{error}</p>}

@@ -4,7 +4,6 @@
 :root {
   --primary-color: #007bff;
   --secondary-color: #6c757d;
-  --light-gray: #f8f9fa;
   --medium-gray: #e9ecef;
   --dark-gray: #495057;
   --success-color: #28a745;
@@ -14,17 +13,20 @@
   --transition-duration: 0.3s;
   --max-width: 1440px;
   --table-border-color: #ddd;
-  --sidebar-width: 250px; /* Reduced Sidebar Width */
+  --sidebar-width: 250px;
   --sidebar-collapsed-width: 30px;
   --table-header-bg: #343a40;
   --table-header-color: white;
   --table-row-hover-bg: #f0f0f5;
-  --form-label-spacing: 0.5rem; /* Reduced Form Label Spacing */
-  --box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1); /* Reduced Shadow Strength */
-  --table-cell-padding: 8px; /* Reduced Cell Padding */
-  --global-padding: 1.5rem; /* General padding for containers */
+  --form-label-spacing: 0.5rem;
+  --box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+  --table-cell-padding: 8px;
+  --global-padding: 1.5rem;
+  background-image: url('./assets/LC_Black_Background_opacity.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
-
 body {
   font-family: var(--font-family);
   margin: 0;

@@ -1,10 +1,11 @@
 // src/components/Layout/ViewModeTabs.jsx
 import React, { useState, useEffect } from 'react';
-import Tab from '../Tabs/Tab';
+import Tab from './Tab';
 import Table from '../Tables/Table';
 import TodosPagamentosTable from '../Tables/TodosPagamentosTable';
 import ViewModeMerchandiseTabs from './ViewModeMerchandiseTabs';
-import ViewModeMonthlySub from './ViewModeMonthlySub';
+import ViewModeMonthlySubTabs from './ViewModeMonthlySubTabs';
+import CompetitionViewTabs from './CompetitionViewTabs';
 import useData from '../../hooks/useData';
 
 const ViewModeTabs = () => {
@@ -24,6 +25,7 @@ const ViewModeTabs = () => {
         <Tab label="Monthly Payments" isActive={activeTab === 'Mensalidade'} onClick={() => setActiveTab('Mensalidade')} />
         <Tab label="Merchandise" isActive={activeTab === 'Merchandise'} onClick={() => setActiveTab('Merchandise')} />
         <Tab label="All Payments" isActive={activeTab === 'Todos_Pagamentos'} onClick={() => setActiveTab('Todos_Pagamentos')} />
+        <Tab label="Competition" isActive={activeTab === 'Competicao'} onClick={() => setActiveTab('Competicao')} /> {/* Add Competition Tab */}
         <Tab label="Profit" isActive={activeTab === 'profit'} onClick={() => setActiveTab('profit')} />
       </div>
 
@@ -35,12 +37,14 @@ const ViewModeTabs = () => {
         ) : activeTab === 'Atletas' || activeTab === 'Profit' ? (
           <Table data={data} tableName={activeTab} />
         ) : activeTab === 'Mensalidade' ? (
-          <ViewModeMonthlySub />
+          <ViewModeMonthlySubTabs />
         ) : activeTab === 'Merchandise' ? (
           <ViewModeMerchandiseTabs />
         ) : activeTab === 'Todos_Pagamentos' ? (
           <TodosPagamentosTable data={data} />
-        ) : null}
+        ) : (activeTab === 'Competicao')? (
+          <CompetitionViewTabs/>
+        ): null}
       </div>
     </div>
   );

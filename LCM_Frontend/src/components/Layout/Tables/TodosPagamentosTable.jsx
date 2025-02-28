@@ -22,10 +22,10 @@ const TodosPagamentosTable = ({ data }) => {
         {data.map((item) => (
           <tr key={item.uid}>
             <td>{item.Atletas?.nome || 'Unknown'}</td>
-            <td>{item.tipo_pagamer || ''}</td>
+            <td>{item.tipo_pagamento || ''}</td>
             <td>{item.descricao || ''}</td>
             <td>{item.valor || 0}</td>
-            <td>{item.data_pagamer || ''}</td>
+            <td>{item.data_pagamento || ''}</td>
             {/* Render data for other columns here */}
           </tr>
         ))}

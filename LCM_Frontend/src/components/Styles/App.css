@@ -30,7 +30,7 @@
   --box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
   --table-cell-padding: 8px;
   --global-padding: 1.5rem;
-  background-image: url('./assets/LC_Black_Background_opacity.png');
+  background-image: url('../../assets/LC_Black_Background_opacity.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;

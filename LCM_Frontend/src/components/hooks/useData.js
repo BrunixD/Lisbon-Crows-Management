@@ -14,9 +14,24 @@ const useData = (initialTab) => {
       let query = supabase.from(tableName).select('*');
 
       if (tableName === 'Atletas') {
-        // Fetch team name with the id
-        query = supabase.from('Atletas').select('*, equipa (nome)'); //  name of related table
+        query = supabase.from('Atletas').select('*, equipa (nome)');
       }
+
+      if (tableName === 'Merchandise') {
+        query = supabase.from('Merchandise').select('*');
+      }
+
+      if (tableName === 'Merchandise_Comprado') {
+        query = supabase
+          .from('Merchandise_Comprado')
+          .select(`
+            id,
+            quantidade,
+            Merchandise (nome),
+            Atletas (nome)
+          `);
+      }
+
       const { data, error } = await query;
       if (error) {
         throw error;

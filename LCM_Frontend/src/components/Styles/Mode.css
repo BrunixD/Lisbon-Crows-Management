@@ -1,4 +1,6 @@
-/* components/Layout/DataTabs.css */
+/* src/components/Styles/ModeStyles.css */
+
+/* ---------- Insert/View Mode Styles ---------- */
 
 .mode-tabs {
     display: flex;
@@ -12,8 +14,8 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
-    margin-right: 5px;
-    font-size: 1rem;
+    margin-right: 3px;
+    font-size: 0.9rem;
     transition: background-color var(--transition-duration) ease;
   }
   
@@ -25,4 +27,22 @@
     background-color: white;
     border-bottom: 2px solid var(--primary-color);
     font-weight: bold;
+  }
+  
+  /* Styles specific to Insert Mode */
+  .insert-mode .tab-container {
+    background-color: #f0f8ff;
+  }
+  
+  .insert-mode .content-container {
+    border: 2px dashed var(--secondary-color);
+  }
+  
+  /* Styles specific to View Mode */
+  .view-mode .tab-container {
+    background-color: #f0fff0;
+  }
+  
+  .view-mode .content-container {
+    border: 2px solid var(--success-color);
   }

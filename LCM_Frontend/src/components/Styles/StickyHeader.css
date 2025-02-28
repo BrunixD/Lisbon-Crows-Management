@@ -1,0 +1,48 @@
+/* src/components/Styles/StickyHeader.css */
+
+/* Sticky Header Styles */
+.sticky-header {
+  background-color: var(--light-gray);
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--medium-gray);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.sticky-header nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Changed to space-between */
+}
+
+/* Hamburger Menu Styles */
+.hamburger-menu {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.mode-tabs-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Media Query for Responsiveness */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: block;
+  }
+
+  .sticky-header nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .sticky-header nav button {
+    margin-bottom: 0.5rem;
+  }
+}

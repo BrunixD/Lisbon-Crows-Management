@@ -1,0 +1,87 @@
+/* src/components/Styles/TabTableStyles.css */
+
+/* ---------- Tab and Table Styles ---------- */
+
+.tab-container {
+    display: flex;
+    justify-content: flex-start;
+    border-bottom: 1px solid var(--medium-gray);
+    background-color: var(--light-gray);
+  }
+  
+  .tab {
+    background-color: #8BC34A; /* Light green */
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: var(--border-radius) var(--border-radius) 0 0;
+    margin-right: 3px;
+    font-size: 0.9rem;
+    transition: background-color var(--transition-duration) ease;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 2px 4px, rgba(0, 0, 0, 0.1) 0px 7px 13px -3px, rgba(0, 0, 0, 0.1) 0px -3px 0px inset; /* Reduced shadow */
+  }
+  
+  .tab:hover {
+    background-color: #689F38; /* Darker green */
+  }
+  
+  .tab.active {
+    background-color: white;
+    color: #333;
+    border-bottom: 2px solid var(--primary-color);
+    font-weight: bold;
+    box-shadow: none;
+  }
+  
+  /* Modify the table style */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0.5rem auto;
+    overflow-x: auto;
+    display: block;
+    white-space: nowrap;
+  }
+  
+  th,
+  td {
+    border: 1px solid var(--table-border-color);
+    padding: 6px;
+    text-align: left;
+    font-size: 0.8rem;
+  }
+  
+  /* Media query for smaller screens */
+  @media (max-width: 768px) {
+    th,
+    td {
+      font-size: 0.7rem;
+    }
+  }
+  
+  td {
+    word-break: break-word;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Add a wrapping div */
+  .table-container {
+    overflow-x: auto;
+  }
+  
+  th {
+    background-color: var(--table-header-bg);
+    color: var(--table-header-color);
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  tr:hover {
+    background-color: var(--table-row-hover-bg);
+  }

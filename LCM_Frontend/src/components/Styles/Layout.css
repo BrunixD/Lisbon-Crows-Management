@@ -1,0 +1,26 @@
+/* src/components/Styles/LayoutStyle.css */
+
+/* ---------- Layout Styles ---------- */
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 95%;
+  margin: 1rem auto;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  max-width: 800px; /* Add a maximum width for larger screens */
+}
+
+/* Adjust for smaller screens */
+@media (max-width: 768px) {
+  .app-container {
+    width: 100%; /* Full width on mobile */
+    margin: 0; /* Remove default margin to make it fill the screen */
+    border-radius: 0; /* Remove border radius for full-screen display */
+    box-shadow: none; /* Remove shadow for cleaner look */
+  }
+}
+  

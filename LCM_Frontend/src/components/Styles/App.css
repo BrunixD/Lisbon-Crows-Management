@@ -1,0 +1,53 @@
+/* src/components/Styles/AppStyles.css */
+
+/* src/components/Styles/AppStyles.css */
+
+#root {
+  max-width: var(--max-width);
+  margin: 1rem auto; /* Center horizontally and add a top/bottom margin */
+  padding: var(--global-padding);
+  text-align: center; /* Center text within the #root */
+}
+
+/* Define global CSS variables for consistent styling */
+:root {
+  --primary-color: #007bff;
+  --medium-gray: #e9ecef;
+  --dark-gray: #495057;
+  --success-color: #28a745;
+  --error-color: #dc3545;
+  --font-family: sans-serif;
+  --border-radius: 0.5rem;
+  --transition-duration: 0.3s;
+  --max-width: 1440px;
+  --table-border-color: #ddd;
+  --sidebar-width: 250px;
+  --sidebar-collapsed-width: 30px;
+  --table-header-bg: #343a40;
+  --table-header-color: white;
+  --table-row-hover-bg: #f0f0f5;
+  --form-label-spacing: 0.5rem;
+  --box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.1);
+  --table-cell-padding: 8px;
+  --global-padding: 1.5rem;
+  background-image: url('./assets/LC_Black_Background_opacity.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+body {
+  font-family: var(--font-family);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: var(--light-gray);
+  color: var(--dark-gray);
+}
+
+#root {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--global-padding);
+  text-align: center;
+}

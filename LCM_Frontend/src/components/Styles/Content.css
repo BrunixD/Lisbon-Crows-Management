@@ -1,0 +1,7 @@
+/* src/components/Styles/ContentStyles.css */
+
+/* Content Area Styles */
+.content {
+    flex: 1;
+    padding: var(--global-padding);
+  }

@@ -55,17 +55,6 @@ const CreateTournamentForm = () => {
                       </option>
                     ))}
                   </select>
-                  <input
-                    type="text"
-                    id="newTorneioOption"
-                    className="input"
-                    value={newTorneioOption}
-                    onChange={(e) => setNewTorneioOption(e.target.value)}
-                    placeholder="Novo Torneio"
-                  />
-                  <button type="button" onClick={handleAddTorneioOption}>
-                    Adicionar Torneio
-                  </button>
                 </div>
 
       <div>

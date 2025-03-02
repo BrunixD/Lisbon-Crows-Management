@@ -12,40 +12,43 @@ const useCreateTournamentForm = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [torneioOptions, setTorneioOptions] = useState([]);
-  const [newTorneioOption, setNewTorneioOption] = useState('');
+  const [newTorneio, setNewTorneio] = useState('');
 
   useEffect(() => {
-    const fetchEquipas = async () => {
+    const fetchData = async () => {
       setLoading(true);
       setError(null);
       try {
-        const { data, error } = await supabase.from('Equipa').select('id, nome');
-        if (error) {
-          throw error;
+        const { data: equipasData, error: equipasError } = await supabase.from('Equipa').select('id, nome');
+        if (equipasError) {
+          throw equipasError;
         }
-        setEquipas(data || []);
-      } catch (error) {
-        setError(error.message);
+        setEquipas(equipasData || []);
+
+        const fetchTorneioOptions = async () => {
+                    const { data, error } = await supabase
+                        .from('Competicao')
+                        .select('torneio')
+                     if (error) {
+                          console.log("error on tournament", error.message);
+                      }
+                      // Remove possible duplicate
+
+                        const uniqueTournamentOptions = [...new Set(data.map(item => item.torneio))]
+                console.log(data, uniqueTournamentOptions, "Unique");
+                        
+                    setTorneioOptions(uniqueTournamentOptions || []);
+                };
+        fetchTorneioOptions();
+      } catch (err) {
+        setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    const fetchTorneioOptions = async () => {
-        // TODO: Fetch torneio options from the database!
-        setTorneioOptions(['INATEL', 'EUL'])
-    }
-    fetchEquipas();
-    fetchTorneioOptions();
+    fetchData();
   }, []);
-
-  const handleAddTorneioOption = () => {
-        if (newTorneioOption.trim() !== '') {
-          setTorneioOptions([...torneioOptions, newTorneioOption]);
-          setNewTorneioOption('');
-        }
-      };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,7 +71,6 @@ const useCreateTournamentForm = () => {
       }
 
       console.log('Competition created successfully:', data);
-
       // Reset the form
       setEquipaId('');
       setTorneio('');
@@ -98,9 +100,7 @@ const useCreateTournamentForm = () => {
     error,
     handleSubmit,
     torneioOptions,
-    newTorneioOption,
-    setNewTorneioOption,
-    handleAddTorneioOption
+
   };
 };
 

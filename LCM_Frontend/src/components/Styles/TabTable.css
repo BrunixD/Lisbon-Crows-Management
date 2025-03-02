@@ -3,11 +3,15 @@
 /* ---------- Tab and Table Styles ---------- */
 
 .tab-container {
-    display: flex;
-    justify-content: flex-start;
-    border-bottom: 1px solid var(--medium-gray);
-    background-color: var(--light-gray);
-  }
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--medium-gray);
+  background-color: var(--light-gray);
+  overflow-x: auto; /* Enable horizontal scrolling */
+  white-space: nowrap; /* Prevent tabs from wrapping to the next line */
+  padding-bottom: 0.5rem; /* Add some padding at the bottom for visual clarity */
+  -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+}
   
   .tab {
     background-color: #8BC34A; /* Light green */

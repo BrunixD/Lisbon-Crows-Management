@@ -19,8 +19,9 @@ const CompetitionPaymentCheck = ({ teamId, tournamentId }) => {
           <thead>
             <tr>
               <th>Name</th>
-              <th>Payment Status</th>
-              <th>Date</th>
+              <th>Individual Payment</th>
+              <th>Team Payment</th>
+              <th>Payment Date</th>
             </tr>
           </thead>
           <tbody>
@@ -28,10 +29,17 @@ const CompetitionPaymentCheck = ({ teamId, tournamentId }) => {
               <tr key={athlete.id}>
                 <td>{athlete.nome}</td>
                 <td>
-                  {athlete.paymentStatus ? (
-                    <img src={tickIcon} alt="Paid" style={{ width: '20px', height: '20px' }} />
+                  {athlete.valor_individual ? (
+                    <img src={tickIcon} alt="Individual Paid" style={{ width: '20px', height: '20px' }} />
                   ) : (
-                    <img src={crossIcon} alt="Not Paid" style={{ width: '20px', height: '20px' }} />
+                    <img src={crossIcon} alt="Individual Not Paid" style={{ width: '20px', height: '20px' }} />
+                  )}
+                </td>
+                <td>
+                  {athlete.valor_equipa ? (
+                    <img src={tickIcon} alt="Team Paid" style={{ width: '20px', height: '20px' }} />
+                  ) : (
+                    <img src={crossIcon} alt="Team Not Paid" style={{ width: '20px', height: '20px' }} />
                   )}
                 </td>
                 <td>

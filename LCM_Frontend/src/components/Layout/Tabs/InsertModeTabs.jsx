@@ -7,6 +7,7 @@ import MerchandiseForm from '../../Forms/MerchandiseForm';
 import ProfitForm from '../../Forms/ProfitForm';
 import CreateTournamentForm from '../../Forms/CreateTournamentForm'; // Import CreateTournamentForm
 import AthletePaymentForm from '../../Forms/AthletePaymentForm';
+import OutrosPagamentosForm from "../../Forms/OutrosPagamentosForm";
 
 const InsertModeTabs = () => {
   const [activeTab, setActiveTab] = useState('Atletas');
@@ -20,14 +21,16 @@ const InsertModeTabs = () => {
         <Tab label="Profit" isActive={activeTab === 'profit'} onClick={() => setActiveTab('profit')} />
         <Tab label="Create Tournament" isActive={activeTab === 'createTournament'} onClick={() => setActiveTab('createTournament')} /> {/* Create Tournament Tab */}
         <Tab label="Athlete Payment" isActive={activeTab === 'athletePayment'} onClick={() => setActiveTab('athletePayment')} /> {/* Athlete Payment Tab */}
+        <Tab label="Other Payments" isActive={activeTab === 'outrosPagamentos'} onClick={() => setActiveTab('outrosPagamentos')} />
       </div>
       <div className="content-container">
         {activeTab === 'Atletas' && <AthleteForm />}
         {activeTab === 'Mensalidade' && <MonthlyPaymentForm />}
         {activeTab === 'merchandise' && <MerchandiseForm />}
         {activeTab === 'profit' && <ProfitForm />}
-        {activeTab === 'createTournament' && <CreateTournamentForm />}
-        {activeTab === 'athletePayment' && <AthletePaymentForm />}
+        {activeTab === 'createTournament' && <CreateTournamentForm />} {/* Render CreateTournamentForm */}
+        {activeTab === 'athletePayment' && <AthletePaymentForm />} {/* Render AthletePaymentForm */}
+        {activeTab === 'outrosPagamentos' && <OutrosPagamentosForm />}
       </div>
     </div>
   );

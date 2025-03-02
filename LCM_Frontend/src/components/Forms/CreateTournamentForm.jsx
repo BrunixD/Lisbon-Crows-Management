@@ -79,7 +79,7 @@ const CreateTournamentForm = () => {
       </div>
 
       <div>
-        <label htmlFor="valor_equipa">Valor Equipa:</label>
+        <label htmlFor="valor_equipa">Valor Equipa (Por atleta):</label>
         <input type="number" id="valor_equipa" className="input" value={valor_equipa} onChange={(e) => setValorEquipa(e.target.value)} required />
       </div>
         {error && <p className="error">{error}</p>}

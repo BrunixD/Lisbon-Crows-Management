@@ -5,75 +5,97 @@ import '../Styles/Form.css';
 
 const AthletePaymentForm = () => {
   const {
-    competitions,
-    selectedCompetitionId,
-    handleCompetitionChange,
-    athletes,
-    handleAthleteSelect,
-    selectedAthleteIds,
-    data_pagamento,
-    setDataPagamento,
-    handleSubmit,
-    loading,
-    error,
+      competitions,
+      selectedCompetitionId,
+      handleCompetitionChange,
+      athletes,
+      selectedAthletePayments,
+      handleAthletePaymentChange,
+      data_pagamento,
+      setDataPagamento,
+      handleSubmit,
+      loading,
+      error,
   } = useAthletePaymentForm();
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <div>
-        <label htmlFor="competition">Competition:</label>
-        <select
-          id="competition"
-          className="input"
-          value={selectedCompetitionId}
-          onChange={handleCompetitionChange}
-          required
-        >
-          <option value="">Select a Competition</option>
-          {competitions.map((competition) => (
-            <option key={competition.id} value={competition.id}>
-              {competition.torneio} - {competition.equipa_id}
-            </option>
-          ))}
-        </select>
-      </div>
+      <form className="form" onSubmit={handleSubmit}>
+          <div>
+              <label htmlFor="competition">Competition:</label>
+              <select
+                  id="competition"
+                  className="input"
+                  value={selectedCompetitionId}
+                  onChange={handleCompetitionChange}
+                  required
+              >
+                  <option value="">Select a Competition</option>
+                  {competitions.map((competition) => (
+                      <option key={competition.id} value={competition.id}>
+                          {competition.torneio} - {competition.equipa_id}
+                      </option>
+                  ))}
+              </select>
+          </div>
 
-      {athletes.length > 0 && (
-        <div>
-          <label>Select Athletes:</label>
-          {athletes.map((athlete) => (
-            <div key={athlete.id}>
-              <label>
-                <input
-                  type="checkbox"
-                  value={athlete.id}
-                  onChange={handleAthleteSelect}
-                  checked={selectedAthleteIds.includes(athlete.id.toString())} // Ensure IDs are same type (string)
-                />
-                {athlete.nome}
-              </label>
-            </div>
-          ))}
-        </div>
-      )}
+          {athletes.length > 0 && (
+              <div>
+                  <label>Select Athletes:</label>
+                  {athletes.map((athlete) => {
+                      // Payment Info (Individual & Team)
+                      const payment = selectedAthletePayments[athlete.id] || {};
+                      const isIndividualPaid = payment?.valor_individual || false; //check if its not null
+                      const isTeamPaid = payment?.valor_equipa || false;
 
-      <div>
-        <label htmlFor="data_pagamento">Payment Date:</label>
-        <input
-          type="date"
-          id="data_pagamento"
-          className="input"
-          value={data_pagamento}
-          onChange={(e) => setDataPagamento(e.target.value)}
-          required
-        />
-      </div>
+                      return (
+                          <div key={athlete.id}>
+                              <label>
+                                {isIndividualPaid && isTeamPaid ? '' : athlete.nome + ': '}
+                              </label>
+                              {(isIndividualPaid) ?
+                                <label>
+                                    Individual
+                                    <input
+                                        type="checkbox"
+                                        name="valor_individual"
+                                        onChange={(e) => handleAthletePaymentChange(athlete.id, 'valor_individual', e.target.checked)}
+                                    />
+                                </label>
+                              : ''}
+                              {(isTeamPaid) ?
+                                <label>
+                                  Team
+                                    <input
+                                        type="checkbox"
+                                        name="valor_equipa"
+                                        onChange={(e) => handleAthletePaymentChange(athlete.id, 'valor_equipa', e.target.checked)}
+                                    />
+                                </label>
+                              : ''}
+                              <br></br>
+                          </div>
+                      );
+                  })}
+              </div>
+          )}
 
-      <button type="submit" disabled={loading} className="button">
-        {loading ? 'Creating...' : 'Register Payments'}
-      </button>
-      {error && <p className="error">{error}</p>}
-    </form>
+          <div>
+              <label htmlFor="data_pagamento">Payment Date:</label>
+              <input
+                  type="date"
+                  id="data_pagamento"
+                  className="input"
+                  value={data_pagamento}
+                  onChange={(e) => setDataPagamento(e.target.value)}
+                  required
+              />
+          </div>
+
+          <button type="submit" disabled={loading} className="button">
+              {loading ? 'Creating...' : 'Register Payments'}
+          </button>
+          {error && <p className="error">{error}</p>}
+      </form>
   );
 };
 

@@ -1,5 +1,5 @@
 // hooks/useAthletePaymentForm.js
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { supabase } from '../../createClient';
 
 const useAthletePaymentForm = () => {
@@ -11,6 +11,7 @@ const useAthletePaymentForm = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [selectedAthletePayments, setSelectedAthletePayments] = useState({});
+    const [submittedPayments, setSubmittedPayments] = useState({}); // Track submitted payments
 
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +30,6 @@ const useAthletePaymentForm = () => {
                     if (competition) {
                         setEquipaId(competition.equipa_id);
 
-                        // Fetch athletes for the selected team
                         const { data: athletesData, error: athletesError } = await supabase
                             .from('Atletas')
                             .select('id, nome')
@@ -37,7 +37,6 @@ const useAthletePaymentForm = () => {
 
                         if (athletesError) throw athletesError;
 
-                        // Fetch existing payments and group
                         const { data: paymentsData, error: paymentsError } = await supabase
                             .from('Atletas_pagamento_torneios')
                             .select('atleta_id, valor_individual, valor_equipa')
@@ -45,7 +44,7 @@ const useAthletePaymentForm = () => {
 
                         if (paymentsError) throw paymentsError;
 
-                        // Group payments by athlete and initialize checkbox states
+                        // Group payments by athlete
                         const groupedPayments = athletesData.reduce((acc, athlete) => {
                             const existingPayment = paymentsData.find(p => p.atleta_id === athlete.id);
 
@@ -71,48 +70,60 @@ const useAthletePaymentForm = () => {
         fetchData();
     }, [selectedCompetitionId]);
 
-    const handleCompetitionChange = (e) => {
+    const handleCompetitionChange = useCallback((e) => {
         setSelectedCompetitionId(e.target.value);
-        setSelectedAthletePayments({}); // This clear all athlete payment states
-    };
+        setSelectedAthletePayments({});
+    }, []);
 
-    const handleAthletePaymentChange = (athleteId, paymentType, checked) => {
+    const handleAthletePaymentChange = useCallback((athleteId, paymentType, checked) => {
         setSelectedAthletePayments(prev => ({
             ...prev,
             [athleteId]: {
                 ...prev[athleteId],
-                [paymentType]: checked, // valor_individual or valor_equipa
+                [paymentType]: checked,
             }
         }));
-    };
+    }, []);
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = useCallback(async (e) => {
         e.preventDefault();
         setLoading(true);
         setError(null);
 
         try {
-            // Prepare the data to be inserted into the AthleteTournamentPayments table
-            const paymentsToInsert = Object.entries(selectedAthletePayments).map(([atleta_id, payment]) => ({
-                atleta_id,
-                competicao_id: selectedCompetitionId,
-                data_pagamento,
-                valor_individual: payment.valor_individual || false,
-                valor_equipa: payment.valor_equipa || false
-            }));
+            const paymentsToInsert = [];
 
-            // Insert the data into Supabase
-            const { data, error } = await supabase
-                .from('Atletas_pagamento_torneios')
-                .insert(paymentsToInsert);
+            for (const athleteId of athletes.map(athlete => athlete.id)) {
+                const payment = selectedAthletePayments[athleteId] || {};
 
-            if (error) throw error;
+                if (payment.valor_individual || payment.valor_equipa) {
+                    paymentsToInsert.push({
+                        atleta_id: athleteId,
+                        competicao_id: selectedCompetitionId,
+                        data_pagamento,
+                        valor_individual: payment.valor_individual || false,
+                        valor_equipa: payment.valor_equipa || false,
+                    });
+                }
+            }
 
-            console.log('Payments created successfully:', data);
+            if (paymentsToInsert.length > 0) {
+                const { data, error } = await supabase
+                    .from('Atletas_pagamento_torneios')
+                    .insert(paymentsToInsert);
 
-            // Reset the form (clear selections after submit)
-            setSelectedAthletePayments({});
+                if (error) throw error;
 
+                console.log('Payments created successfully:', data);
+                let newValuesForSubmitted = {};
+                //Clear only new checkbox values as you submited and new athletes, but keep what was there!
+
+                   paymentsToInsert.forEach(item => newValuesForSubmitted[item.atleta_id] = 1)
+                setSubmittedPayments({});
+
+            } else {
+                console.log("No payments to insert.");
+            }
             setDataPagamento('');
 
         } catch (err) {
@@ -120,7 +131,7 @@ const useAthletePaymentForm = () => {
         } finally {
             setLoading(false);
         }
-    };
+    }, [athletes, selectedCompetitionId, selectedAthletePayments, data_pagamento, setLoading, setError]);
 
     return {
         competitions,
@@ -134,6 +145,7 @@ const useAthletePaymentForm = () => {
         handleSubmit,
         loading,
         error,
+        submittedPayments,
     };
 };
 

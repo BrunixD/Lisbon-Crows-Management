@@ -6,7 +6,7 @@ import MonthlyPaymentForm from '../../Forms/MonthlyPaymentForm';
 import MerchandiseForm from '../../Forms/MerchandiseForm';
 import ProfitForm from '../../Forms/ProfitForm';
 import CreateTournamentForm from '../../Forms/CreateTournamentForm'; // Import CreateTournamentForm
-import AthletePaymentForm from '../../Forms/AthletePaymentForm';
+import AthletePaymentForm from '../../Forms/AthletePayment/AthletePaymentForm';
 import OutrosPagamentosForm from "../../Forms/OutrosPagamentosForm";
 
 const InsertModeTabs = () => {

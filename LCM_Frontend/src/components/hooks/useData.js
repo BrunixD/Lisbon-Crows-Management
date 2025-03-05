@@ -37,6 +37,10 @@ const useData = (initialTab) => {
         return;
       }
 
+      if (tableName === 'Entrada_Saida') {
+        return;
+      }
+
       const { data, error } = await query;
       if (error) {
         throw error;

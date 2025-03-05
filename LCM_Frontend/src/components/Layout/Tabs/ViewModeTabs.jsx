@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Tab from './Tab';
 import Table from '../Tables/Table';
 import TodosPagamentosTable from '../Tables/TodosPagamentosTable';
+import InOutViewTabs from './InOutViewTabs';
 import ViewModeMerchandiseTabs from './ViewModeMerchandiseTabs';
 import ViewModeMonthlySubTabs from './ViewModeMonthlySubTabs';
 import CompetitionViewTabs from './CompetitionViewTabs';
@@ -27,6 +28,7 @@ const ViewModeTabs = () => {
         <Tab label="All Payments" isActive={activeTab === 'Todos_Pagamentos'} onClick={() => setActiveTab('Todos_Pagamentos')} />
         <Tab label="Competition" isActive={activeTab === 'Competicao'} onClick={() => setActiveTab('Competicao')} /> {/* Add Competition Tab */}
         <Tab label="Profit" isActive={activeTab === 'profit'} onClick={() => setActiveTab('profit')} />
+        <Tab label="IN/OUT" isActive={activeTab === 'Entrada_Saida'} onClick={() => setActiveTab('Entrada_Saida')} />
       </div>
 
       <div className="content-container">
@@ -44,6 +46,8 @@ const ViewModeTabs = () => {
           <TodosPagamentosTable data={data} />
         ) : (activeTab === 'Competicao')? (
           <CompetitionViewTabs/>
+        ) : (activeTab === 'Entrada_Saida')? (
+          <InOutViewTabs/>
         ): null}
       </div>
     </div>

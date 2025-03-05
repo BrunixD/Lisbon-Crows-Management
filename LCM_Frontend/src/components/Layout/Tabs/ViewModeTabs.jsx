@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Tab from './Tab';
 import Table from '../Tables/Table';
 import TodosPagamentosTable from '../Tables/TodosPagamentosTable';
-import InOutViewTabs from './InOutViewTabs';
 import ViewModeMerchandiseTabs from './ViewModeMerchandiseTabs';
 import ViewModeMonthlySubTabs from './ViewModeMonthlySubTabs';
 import CompetitionViewTabs from './CompetitionViewTabs';

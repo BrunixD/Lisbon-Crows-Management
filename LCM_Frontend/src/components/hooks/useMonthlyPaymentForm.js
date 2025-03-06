@@ -39,14 +39,14 @@ const useMonthlyPaymentForm = () => {
 
     // Update equipe and monthly values
     useEffect(() => {
+
         if (selectedAthlete) {
-          const athlete = athletes.find((a) => a.atleta_id === parseInt(selectedAthlete));
-          setEquipa(athlete.equipa.id);
-          setValorMensalidade('');
-        } else {
-            setEquipa('');
-            setValorMensalidade('');
-        }
+            athletes.forEach((athlete) => {
+                if (parseInt(selectedAthlete) === athlete.id) {
+                    return setChosenAthlete(athlete);
+                } 
+            });
+        } 
     }, [selectedAthlete, athletes]);
 
     const handleSubmit = async (e) => {
@@ -70,8 +70,8 @@ const useMonthlyPaymentForm = () => {
             const { data: inData, error: inError } = await supabase.from('Entrada_Valores').insert([
                 {
                     descricao: 'Mensalidade ' + mes,
-                    data_pagamento,
-                    valor: parseInt(valorMensalidade), // Use parseFloat to ensure number type
+                    data_pagamento: data_pagamento || null,
+                    valor: chosenAthlete.equipa.valor_mensalidade, // Use parseFloat to ensure number type
                 },
             ]);
 
@@ -79,12 +79,7 @@ const useMonthlyPaymentForm = () => {
                 throw inError;
             }
 
-
-            console.log('Payment inserted successfully:', data);
-            // Reset form fields
-            setSelectedAthlete('');
-            setMes('');
-            setDataPagamento(''); // Reset data_pagamento
+            console.log('Payment inserted successfully:', data); 
         } catch (error) {
             setError(error.message);
         } finally {
@@ -96,8 +91,6 @@ const useMonthlyPaymentForm = () => {
         athletes,
         selectedAthlete,
         setSelectedAthlete,
-        equipa,
-        valorMensalidade,
         mes,
         setMes,
         data_pagamento,   // Add data_pagamento to the returned object

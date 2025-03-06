@@ -19,7 +19,7 @@ const TodosPagamentosTable = ({ data }) => {
             </thead>
             <tbody>
                 {data.map((item) => (
-                    <tr key={item.uid}>
+                    <tr key={item.uid || `no-uid-${Math.random()}`}>
                         <td>{item.Atletas?.nome || 'Unknown'}</td>
                         <td>{item.tipo_pagamento || ''}</td>
                         <td>

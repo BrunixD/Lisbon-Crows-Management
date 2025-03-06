@@ -28,13 +28,17 @@ const Table = ({ data, tableName }) => {
       </thead>
       <tbody>
         {data.map((row) => (
-          <tr key={row.id}>
+          <tr key={row.id || `no-uid-${Math.random()}`}>
             {columns.map((column) => {
               if (column === 'equipa') {
-                // Render team name instead of ID
-                return <td key={column}>{row.equipa ? row.equipa.nome : ''}</td>;
+                  // Safest possible check:
+                  const teamName = row.equipa && typeof row.equipa === 'object' && row.equipa.nome ? row.equipa.nome : '';
+                return <td key={`${row.id}-${column}`}>{teamName}</td>;
               } else {
-                return <td key={column}>{row[column]}</td>;
+                const cellValue = row[column];
+                //Check if the cell value is an object, if so, convert to string
+                const displayValue = typeof cellValue === 'object' && cellValue !== null ? JSON.stringify(cellValue) : cellValue;
+                return <td key={`${row.id}-${column}`}>{displayValue}</td>;
               }
             })}
           </tr>

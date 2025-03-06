@@ -35,20 +35,6 @@ const MonthlyPaymentForm = () => {
         </select>
       </div>
 
-      {equipa && (
-        <div>
-          <label>Equipa:</label>
-          <input type="text" className="input" value={equipa} readOnly /> {/* Apply "input" class */}
-        </div>
-      )}
-
-      {valorMensalidade && (
-        <div>
-          <label>Valor Mensalidade:</label>
-          <input type="text" className="input" value={valorMensalidade} readOnly /> {/* Apply "input" class */}
-        </div>
-      )}
-
       <div>
         <label htmlFor="mes">Mês:</label>
         <select id="mes" className="input" value={mes} onChange={(e) => setMes(e.target.value)} required> {/* Apply "input" class */}

@@ -35,7 +35,6 @@ const useCreateTournamentForm = () => {
                       // Remove possible duplicate
 
                         const uniqueTournamentOptions = [...new Set(data.map(item => item.torneio))]
-                console.log(data, uniqueTournamentOptions, "Unique");
                         
                     setTorneioOptions(uniqueTournamentOptions || []);
                 };

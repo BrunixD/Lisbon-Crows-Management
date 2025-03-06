@@ -1,3 +1,4 @@
+// Table.jsx
 // components/Tables/Table.jsx
 import React from 'react';
 
@@ -28,18 +29,29 @@ const Table = ({ data, tableName }) => {
       </thead>
       <tbody>
         {data.map((row) => (
-          <tr key={row.id || `no-uid-${Math.random()}`}>
+          <tr key={row.id || `no-id-${Math.random()}`}>
             {columns.map((column) => {
+              let displayValue = '';
+
               if (column === 'equipa') {
-                  // Safest possible check:
-                  const teamName = row.equipa && typeof row.equipa === 'object' && row.equipa.nome ? row.equipa.nome : '';
-                return <td key={`${row.id}-${column}`}>{teamName}</td>;
+                // Safest possible check:
+                displayValue = row.equipa && typeof row.equipa === 'object' && row.equipa.nome ? row.equipa.nome : '';
               } else {
                 const cellValue = row[column];
-                //Check if the cell value is an object, if so, convert to string
-                const displayValue = typeof cellValue === 'object' && cellValue !== null ? JSON.stringify(cellValue) : cellValue;
-                return <td key={`${row.id}-${column}`}>{displayValue}</td>;
+
+                if (typeof cellValue === 'object' && cellValue !== null) {
+                  try {
+                    displayValue = JSON.stringify(cellValue); // Convert to JSON string
+                  } catch (e) {
+                    displayValue = 'Error converting to string';
+                  }
+                } else if (cellValue !== null && cellValue !== undefined) {
+                  displayValue = cellValue.toString();
+                } else {
+                  displayValue = ''; // Handle null or undefined
+                }
               }
+              return <td key={`${row.id}-${column}`}>{displayValue}</td>;
             })}
           </tr>
         ))}

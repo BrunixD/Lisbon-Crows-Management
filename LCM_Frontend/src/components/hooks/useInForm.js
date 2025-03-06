@@ -20,6 +20,7 @@ const useInForm = () => {
           descricao,
           data_pagamento,
           valor,
+          type: 'normal', // Set the type to 'normal' for regular entries
         },
       ]);
 

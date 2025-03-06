@@ -1,3 +1,4 @@
+// src/components/hooks/useData.js
 import { useState, useCallback } from 'react';
 import { supabase } from '../../createClient';
 
@@ -31,6 +32,10 @@ const useData = () => {
           `);
             }
 
+            if (tableName === 'Profit') {
+                return; // No need to fetch data for this table
+            }
+
             if (tableName === 'Entrada_Valores') {
                 query = supabase
                     .from('Entrada_Valores')
@@ -56,7 +61,8 @@ const useData = () => {
             return data || []; // Return data
         } catch (error) {
             setError(error.message);
-            return null; // Return null in case of error
+            setData([]);
+            return []; // Return empty array in case of error
         } finally {
             setLoading(false);
         }
@@ -117,6 +123,7 @@ const useData = () => {
             setData(combinedData);
         } catch (error) {
             setError(error.message);
+            setData([]);
         } finally {
             setLoading(false);
         }
